@@ -2,10 +2,10 @@
 
 Conjunto de projetos pessoais voltados aos estudos.
 
-## devDojo
++  ## devDojo
 
-Tutoriais do canal devDojo de fundamentos.
+    Tutoriais do canal devDojo de fundamentos.
 
-## spring_sandbox
++  ## spring_sandbox
 
-API para estudos de aspectos do SPRING.
+    API para estudos de aspectos do SPRING.
