@@ -1,0 +1,95 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"java.configuration.updateBuildConfiguration": "automatic",
+		"sqltools.connections": [
+			{
+				"mysqlOptions": {
+					"authProtocol": "default"
+				},
+				"previewLimit": 50,
+				"server": "172.18.0.2",
+				"port": 3306,
+				"askForPassword": true,
+				"driver": "MariaDB",
+				"name": "maria-container",
+				"username": "root",
+				"database": "sandbox"
+			}
+		],
+		"spring-boot.ls.checkJVM": false
+	},
+	"launch": {
+		"version": "0.2.0",
+		"configurations": [
+		
+			{
+				"type": "java",
+				"name": "Launch Current File",
+				"request": "launch",
+				"mainClass": "${file}"
+			},
+			{
+				"type": "java",
+				"name": "Launch App",
+				"request": "launch",
+				"mainClass": "aulasheranca50.App",
+				"projectName": "devdojo"
+			},
+			{
+				"type": "java",
+				"name": "Launch DAOMain",
+				"request": "launch",
+				"mainClass": "polimorfismo.DAOMain",
+				"projectName": "devdojo"
+			},
+			{
+				"type": "java",
+				"name": "Launch Main",
+				"request": "launch",
+				"mainClass": "polimorfismo.Main",
+				"projectName": "devdojo"
+			},
+			{
+				"type": "java",
+				"name": "Launch Main(1)",
+				"request": "launch",
+				"mainClass": "polimorfismo.aulasclassesabdtratas60.Main",
+				"projectName": "devdojo"
+			},
+			{
+				"type": "java",
+				"name": "Launch TesteEnum",
+				"request": "launch",
+				"mainClass": "polimorfismo.aulasenum57.TesteEnum",
+				"projectName": "devdojo"
+			},
+			{
+				"type": "java",
+				"name": "Launch Main(2)",
+				"request": "launch",
+				"mainClass": "polimorfismo.interfaces62.Main",
+				"projectName": "devdojo"
+			},
+			{
+				"type": "java",
+				"name": "Launch SpringSandboxApplication LOCAL",
+				"request": "launch",
+				"mainClass": "com.spring_sandbox.spring_sandbox.SpringSandboxApplication",
+				"projectName": "spring_sandbox"
+			},
+			{
+				"type": "java",
+				"name": "Launch SpringSandboxApplication REMOTE",
+				"request": "launch",
+				"mainClass": "org.springframework.boot.devtools.RemoteSpringApplication",
+				"args": "http://localhost:8080",
+				"projectName": "spring_sandbox"
+			}
+		]
+	}
+}

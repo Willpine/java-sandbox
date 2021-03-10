@@ -1,0 +1,40 @@
+version: "3"
+
+services:
+  db:
+    container_name: 'maria-container'
+    hostname: 'dbhostname'
+    image: "mariadb:latest"
+    restart: 'always'
+    ports: 
+      - '3306:3306'
+    volumes: 
+      - /var/lib/mysql/data:/var/lib/mysql/data
+      - /var/lib/mysql/logs:/var/lib/mysql/logs
+      - /var/docker/mariadb/conf:/etc/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: willpine
+      MYSQL_DATABASE: sandbox
+      MYSQL_USER: willpine
+      MYSQL_PASSWORD: willpine
+    networks: 
+      backend:
+        aliases: 
+          - alias1
+      
+  api:
+    container_name: spring-container
+    image: willpine/spring_sandbox_api
+    build: .
+    ports:
+      - '8080:8080'
+    depends_on: 
+      - db
+    networks:
+      backend:
+        aliases: 
+          - alias2
+
+networks:
+  backend:
+    driver: bridge
