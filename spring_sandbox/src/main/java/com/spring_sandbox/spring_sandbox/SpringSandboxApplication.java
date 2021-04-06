@@ -9,5 +9,4 @@ public class SpringSandboxApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(SpringSandboxApplication.class, args);
 	}
-
 }

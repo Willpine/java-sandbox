@@ -37,4 +37,4 @@ CREATE TABLE `COMMENT` (
 /*drop table DRAWING;*/
 /*DROP TABLE USER;*/
 
-COMMIT;
+--COMMIT;
