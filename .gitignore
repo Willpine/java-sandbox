@@ -3,6 +3,7 @@ HELP.md
 target/
 */.mvn/wrapper/maven-wrapper.jar
 **/src/main/**/target/
+*.p12
 **/src/test/**/target/
 
 ### STS ###
