@@ -42,7 +42,7 @@ public class UserController {
     @PostMapping
     public ResponseEntity<?> add(@RequestBody CreateUserCommand command){
         log.info("GET ADD REQUEST CALLED CHANGED");
-        return ResponseEntity.ok(userService.add(command));
+        return ResponseEntity.ok(userService.persistenceAdd(command));
     }
 
     @GetMapping("{id}")
