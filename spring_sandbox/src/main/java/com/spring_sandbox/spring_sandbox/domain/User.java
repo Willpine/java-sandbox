@@ -14,7 +14,7 @@ import com.spring_sandbox.spring_sandbox.dto.command.CreateUserCommand;
 import lombok.Getter;
 
 @Entity@Table(name = "USER")@Getter
-public class User {
+public class User implements DomainEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "USER_ID")

@@ -40,13 +40,13 @@ public class UserController {
     // } // O all args constructor cuida de criar isso
     
     @PostMapping
-    public ResponseEntity<?> add(@RequestBody CreateUserCommand command){
+    public ResponseEntity<User> add(@RequestBody CreateUserCommand command){
         log.info("GET ADD REQUEST CALLED CHANGED");
         return ResponseEntity.ok(userService.add(command));
     }
 
     @GetMapping("{id}")
-    public ResponseEntity<?> retrieve(@PathVariable(name = "id") Long id){
+    public ResponseEntity<UserModel> retrieve(@PathVariable(name = "id") Long id){
         User user = userService.retrieve(id);
         UserModel model = UserModel.of(user);
         log.info("GET RETRIEVE ONE REQUEST CALLED");
@@ -54,7 +54,7 @@ public class UserController {
     }
 
     @GetMapping
-    public ResponseEntity<?> retrievePage(Pageable pageable) {
+    public ResponseEntity<PageModel<User, UserPageModel>> retrievePage(Pageable pageable) {
         Page<User> users = userService.retrievePage(pageable);
         PageModel<User, UserPageModel> model = UserPageModel.ofPage(users);
         log.info("GET RETRIEVE ALL REQUEST CALLED");

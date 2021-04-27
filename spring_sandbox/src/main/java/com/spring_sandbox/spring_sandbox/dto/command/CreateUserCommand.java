@@ -7,7 +7,7 @@ import com.spring_sandbox.spring_sandbox.util.validation.CommandValidator;
 import lombok.Getter;
 
 @Getter
-public class CreateUserCommand {
+public class CreateUserCommand implements CreateCommand{
     @NotBlank
     private String name;
     @NotBlank

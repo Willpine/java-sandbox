@@ -12,7 +12,7 @@ import org.springframework.data.domain.Page;
 import lombok.Getter;
 
 @Getter
-public class UserPageModel {
+public class UserPageModel{
     private String name;
     private LocalDateTime registerDate;
 

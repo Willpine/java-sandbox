@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("comment")
 public class CommentController {
     @PostMapping
-    public ResponseEntity<?> addComment(CreateCommentCommand command){
+    public ResponseEntity<Object> addComment(CreateCommentCommand command){
 
         return ResponseEntity.ok().build();
     }

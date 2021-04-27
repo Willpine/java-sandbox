@@ -2,12 +2,14 @@ package com.spring_sandbox.spring_sandbox.dto.model;
 
 import java.util.List;
 
+import com.spring_sandbox.spring_sandbox.dto.interfaces.HttpModelResponse;
+
 import org.springframework.data.domain.Page;
 
 import lombok.Getter;
 
 @Getter
-public class PageModel<T, M> {
+public class PageModel<T, M> implements HttpModelResponse{
     private Long total;
     private Integer totalPaginas;
     private Integer tamanhoPagina;
