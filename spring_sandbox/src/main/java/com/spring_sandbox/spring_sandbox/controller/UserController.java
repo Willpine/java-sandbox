@@ -10,6 +10,7 @@ import com.spring_sandbox.spring_sandbox.service.SandboxUserService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -61,8 +62,9 @@ public class UserController {
         return ResponseEntity.ok(model);
     }
 
+    // Only for testing
     @GetMapping("/pine")
-    public ResponseEntity<?> retrieveAll(){
+    public ResponseEntity<UserDetails> retrieveAll(){
         log.info("GET RETRIEVE ONE REQUEST CALLED");
         return ResponseEntity.ok(userService.loadUserByUsername("willpine"));
     }
