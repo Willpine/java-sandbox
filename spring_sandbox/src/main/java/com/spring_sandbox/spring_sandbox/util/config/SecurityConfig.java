@@ -1,5 +1,7 @@
 package com.spring_sandbox.spring_sandbox.util.config;
 
+import com.spring_sandbox.spring_sandbox.service.SandboxUserService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -16,7 +18,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
-    private UserDetailsServiceImpl userDetailsService;
+    private SandboxUserService userDetailsService;
     
     // Aqui definimos onde o usuário vai precisar ou não de identificação
     @Override
@@ -24,7 +26,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
         .csrf().disable()
         .authorizeRequests()
-                    .antMatchers("/h2-console/*").permitAll()
                     .anyRequest().authenticated()
                     .and()
                     .headers().frameOptions().disable()

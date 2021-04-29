@@ -8,10 +8,13 @@ import com.spring_sandbox.spring_sandbox.util.exception.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 @Service
-public class SandboxUserService implements SandboxService{
+public class SandboxUserService implements SandboxService, UserDetailsService{
     
     @Autowired
     UserRepository userRepository;
@@ -27,5 +30,12 @@ public class SandboxUserService implements SandboxService{
 
     public Page<User> retrievePage (Pageable pageable){
         return userRepository.findAll(pageable);
+    }
+
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        User user = userRepository.findByName(username)
+            .orElseThrow(() -> new UsernameNotFoundException("Usuário não encontrado"));
+        return user;
     }
 }

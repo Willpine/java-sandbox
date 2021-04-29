@@ -9,7 +9,3 @@ Conjunto de projetos pessoais voltados aos estudos.
 +  ## spring_sandbox
 
     API para estudos de aspectos do SPRING.
-
-    ### Enabling HTTPS
-    Enable the "https" profile;
-    A keystore.p12 containing a SSL certificate must be generated under the "resources" folder.
