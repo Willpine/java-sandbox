@@ -1,6 +1,7 @@
 package com.spring_sandbox.spring_sandbox.domain;
 
 import java.time.LocalDateTime;
+import java.util.Collection;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,10 +12,13 @@ import javax.persistence.Table;
 
 import com.spring_sandbox.spring_sandbox.dto.command.CreateUserCommand;
 
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
 import lombok.Getter;
 
 @Entity@Table(name = "USER")@Getter
-public class User implements DomainEntity{
+public class User implements DomainEntity, UserDetails{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "USER_ID")
@@ -37,5 +41,40 @@ public class User implements DomainEntity{
         this.name = command.getName();
         this.password = command.getPassword();
         this.registerDate = LocalDateTime.now();
+    }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return null;
+    }
+
+    @Override
+    public String getUsername() {
+        return this.name;
+    }
+
+    @Override
+    public String getPassword() {
+        return this.password;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
     }
 }
