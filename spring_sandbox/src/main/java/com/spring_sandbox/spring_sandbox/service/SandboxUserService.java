@@ -2,8 +2,10 @@ package com.spring_sandbox.spring_sandbox.service;
 
 import javax.transaction.Transactional;
 
+import com.spring_sandbox.spring_sandbox.domain.Role;
 import com.spring_sandbox.spring_sandbox.domain.User;
 import com.spring_sandbox.spring_sandbox.dto.command.CreateUserCommand;
+import com.spring_sandbox.spring_sandbox.repository.RoleRepository;
 import com.spring_sandbox.spring_sandbox.repository.UserRepository;
 import com.spring_sandbox.spring_sandbox.util.exception.NotFoundException;
 
@@ -20,9 +22,13 @@ public class SandboxUserService implements SandboxService, UserDetailsService{
     
     @Autowired
     UserRepository userRepository;
+    @Autowired
+    RoleRepository roleRepository;
 
     public User add (CreateUserCommand command){
         User user = User.addUser(command);
+        user.getRoles().add(roleRepository.findById("ROLE_USER")
+        .orElseThrow(() -> new NotFoundException("Role not found")));
         return userRepository.save(user);
     }
 

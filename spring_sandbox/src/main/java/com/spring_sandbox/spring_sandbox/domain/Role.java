@@ -1,5 +1,6 @@
 package com.spring_sandbox.spring_sandbox.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -32,5 +33,7 @@ public class Role implements GrantedAuthority{
     public String getAuthority() {
         return this.roleName;
     }
+
+    protected Role(){}
 
 }

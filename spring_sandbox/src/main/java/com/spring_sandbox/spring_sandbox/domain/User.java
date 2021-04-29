@@ -1,6 +1,7 @@
 package com.spring_sandbox.spring_sandbox.domain;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -15,7 +16,10 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 import com.spring_sandbox.spring_sandbox.dto.command.CreateUserCommand;
+import com.spring_sandbox.spring_sandbox.repository.RoleRepository;
+import com.spring_sandbox.spring_sandbox.util.exception.NotFoundException;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -23,6 +27,7 @@ import lombok.Getter;
 
 @Entity@Table(name = "USER")@Getter
 public class User implements DomainEntity, UserDetails{
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "USER_ID")
@@ -40,7 +45,7 @@ public class User implements DomainEntity, UserDetails{
         ,joinColumns = @JoinColumn(name="USER_ID")
         ,inverseJoinColumns = @JoinColumn(name="ROLE_ID")
     )
-    private List<Role> roles;
+    private List<Role> roles = new ArrayList<>();
 
     protected User() {}
 
