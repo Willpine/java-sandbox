@@ -2,12 +2,16 @@ package com.spring_sandbox.spring_sandbox.domain;
 
 import java.time.LocalDateTime;
 import java.util.Collection;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 import com.spring_sandbox.spring_sandbox.dto.command.CreateUserCommand;
@@ -30,6 +34,14 @@ public class User implements DomainEntity, UserDetails{
     @Column(name = "USER_REGISTRATION_DATE")
     private LocalDateTime registerDate;
 
+    @ManyToMany
+    @JoinTable(
+        name="USER_ROLES"
+        ,joinColumns = @JoinColumn(name="USER_ID")
+        ,inverseJoinColumns = @JoinColumn(name="ROLE_ID")
+    )
+    private List<Role> roles;
+
     protected User() {}
 
     public static User addUser(CreateUserCommand command) {
@@ -45,7 +57,7 @@ public class User implements DomainEntity, UserDetails{
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+        return this.roles;
     }
 
     @Override
@@ -77,4 +89,6 @@ public class User implements DomainEntity, UserDetails{
     public boolean isEnabled() {
         return true;
     }
+
+
 }

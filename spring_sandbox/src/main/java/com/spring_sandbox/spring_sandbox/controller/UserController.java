@@ -60,4 +60,10 @@ public class UserController {
         log.info("GET RETRIEVE ALL REQUEST CALLED");
         return ResponseEntity.ok(model);
     }
+
+    @GetMapping("/pine")
+    public ResponseEntity<?> retrieveAll(){
+        log.info("GET RETRIEVE ONE REQUEST CALLED");
+        return ResponseEntity.ok(userService.loadUserByUsername("willpine"));
+    }
 }

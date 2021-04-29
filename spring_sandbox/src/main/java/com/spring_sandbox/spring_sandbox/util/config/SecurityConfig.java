@@ -4,6 +4,7 @@ import com.spring_sandbox.spring_sandbox.service.SandboxUserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
@@ -26,6 +27,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
         .csrf().disable()
         .authorizeRequests()
+                    .antMatchers("/h2-console/*").permitAll()
+                    .antMatchers("/user/pine").hasRole("ADMIN")
+                    .antMatchers(HttpMethod.POST,"/user").hasRole("ADMIN")
                     .anyRequest().authenticated()
                     .and()
                     .headers().frameOptions().disable()

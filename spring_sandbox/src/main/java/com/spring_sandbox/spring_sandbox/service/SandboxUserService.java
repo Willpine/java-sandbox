@@ -1,5 +1,7 @@
 package com.spring_sandbox.spring_sandbox.service;
 
+import javax.transaction.Transactional;
+
 import com.spring_sandbox.spring_sandbox.domain.User;
 import com.spring_sandbox.spring_sandbox.dto.command.CreateUserCommand;
 import com.spring_sandbox.spring_sandbox.repository.UserRepository;
@@ -13,7 +15,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-@Service
+@Service @Transactional
 public class SandboxUserService implements SandboxService, UserDetailsService{
     
     @Autowired
@@ -36,6 +38,7 @@ public class SandboxUserService implements SandboxService, UserDetailsService{
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User user = userRepository.findByName(username)
             .orElseThrow(() -> new UsernameNotFoundException("Usuário não encontrado"));
-        return user;
+        return new org.springframework.security.core.userdetails
+            .User(user.getName(), user.getPassword(),true,true,true,true, user.getAuthorities());
     }
 }
