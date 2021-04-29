@@ -16,10 +16,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 import com.spring_sandbox.spring_sandbox.dto.command.CreateUserCommand;
-import com.spring_sandbox.spring_sandbox.repository.RoleRepository;
-import com.spring_sandbox.spring_sandbox.util.exception.NotFoundException;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
