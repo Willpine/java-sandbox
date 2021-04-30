@@ -1,6 +1,6 @@
 spring:
     profiles:
-        active: https
+        active: 
     datasource:
         url: jdbc:h2:mem:sandbox
         driverClassName: org.h2.Driver  

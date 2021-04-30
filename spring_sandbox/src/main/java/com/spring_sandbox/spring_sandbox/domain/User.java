@@ -19,6 +19,7 @@ import com.spring_sandbox.spring_sandbox.dto.command.CreateUserCommand;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import lombok.Getter;
 
@@ -53,7 +54,7 @@ public class User implements DomainEntity, UserDetails{
 
     private User (CreateUserCommand command){
         this.name = command.getName();
-        this.password = command.getPassword();
+        this.password = encryptPassword(command.getPassword());
         this.registerDate = LocalDateTime.now();
     }
 
@@ -92,5 +93,9 @@ public class User implements DomainEntity, UserDetails{
         return true;
     }
 
+    private String encryptPassword(String password){
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        return passwordEncoder.encode(password);
+    }
 
 }
