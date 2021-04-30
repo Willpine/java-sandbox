@@ -27,11 +27,10 @@ import lombok.Getter;
 public class User implements DomainEntity, UserDetails{
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "USER_ID")
-    private Long id;
     @Column(name = "USER_NAME")
     private String name;
+    @Column(name = "USER_NICKNAME")
+    private String nickname;
     @Column(name = "USER_PASSWORD")
     private String password;
     @Column(name = "USER_REGISTRATION_DATE")
@@ -40,7 +39,7 @@ public class User implements DomainEntity, UserDetails{
     @ManyToMany
     @JoinTable(
         name="USER_ROLES"
-        ,joinColumns = @JoinColumn(name="USER_ID")
+        ,joinColumns = @JoinColumn(name="USER_NAME")
         ,inverseJoinColumns = @JoinColumn(name="ROLE_ID")
     )
     private List<Role> roles = new ArrayList<>();
@@ -54,6 +53,7 @@ public class User implements DomainEntity, UserDetails{
 
     private User (CreateUserCommand command){
         this.name = command.getName();
+        this.nickname = command.getNickname();
         this.password = encryptPassword(command.getPassword());
         this.registerDate = LocalDateTime.now();
     }

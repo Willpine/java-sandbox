@@ -16,9 +16,8 @@ public class RestExceptionHandler {
 	
 	@ExceptionHandler(BadRequestException.class)
 	public ResponseEntity<?> handleBadRequestException (BadRequestException exception){
-		//String message = exception.getMessage();
-		MessageErrorResponse errorResponse = exception.getErrorResponse();
-		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Icorrect format/Empty body \n\n Trace: "+errorResponse);
+		String message = exception.getMessage();
+		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(message);
 	}
 	
 	@ExceptionHandler(NoContentException.class)

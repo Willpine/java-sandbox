@@ -47,8 +47,8 @@ public class UserController {
     }
 
     @GetMapping("{id}")
-    public ResponseEntity<UserModel> retrieve(@PathVariable(name = "id") Long id){
-        User user = userService.retrieve(id);
+    public ResponseEntity<UserModel> retrieve(@PathVariable(name = "username") String username){
+        User user = userService.retrieve(username);
         UserModel model = UserModel.of(user);
         log.info("GET RETRIEVE ONE REQUEST CALLED");
         return ResponseEntity.ok(model);

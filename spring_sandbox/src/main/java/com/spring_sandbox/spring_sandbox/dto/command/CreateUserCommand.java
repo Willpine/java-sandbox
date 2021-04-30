@@ -11,6 +11,8 @@ public class CreateUserCommand implements CreateCommand{
     @NotBlank
     private String name;
     @NotBlank
+    private String nickname;
+    @NotBlank
     private String password;
 
     public void validate() {

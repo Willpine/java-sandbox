@@ -6,6 +6,7 @@ import com.spring_sandbox.spring_sandbox.domain.User;
 import com.spring_sandbox.spring_sandbox.dto.command.CreateUserCommand;
 import com.spring_sandbox.spring_sandbox.repository.RoleRepository;
 import com.spring_sandbox.spring_sandbox.repository.UserRepository;
+import com.spring_sandbox.spring_sandbox.util.exception.BadRequestException;
 import com.spring_sandbox.spring_sandbox.util.exception.NotFoundException;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,14 +26,16 @@ public class SandboxUserService implements SandboxService, UserDetailsService{
     RoleRepository roleRepository;
 
     public User add (CreateUserCommand command){
+        if(userRepository.existsById(command.getName()))
+            throw new BadRequestException("Username already taken.");
         User user = User.addUser(command);
         addUserRolesTo(user);
         userRepository.save(user);
         return userRepository.save(user);
     }
 
-    public User retrieve (Long id){
-        return userRepository.findById(id).orElseThrow(() -> new NotFoundException("Usuário "+id+" não encontrado"));
+    public User retrieve (String username){
+        return userRepository.findById(username).orElseThrow(() -> new NotFoundException("Usuário "+username+" não encontrado"));
     }
 
     public Page<User> retrievePage (Pageable pageable){
